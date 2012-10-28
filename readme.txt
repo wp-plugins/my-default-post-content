@@ -1,0 +1,48 @@
+=== My Default Post Content ===
+Contributors: mrdenny
+Donate Link: http://mrdenny.com/go/DefaultPostContent
+Tags: email
+Requires at least: 3.0.1
+Tested up to: 3.4.2
+Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Emails other people when you publish a blog post.
+
+== Description ==
+
+This plugin sets the title and body of new blog posts so that when the post contain the same content each time
+that same content doesn't need to be typed in each time.  This plugin differs from others in that it supports
+setting the subject as well as the body of the blog post.
+
+== Installation ==
+
+This section describes how to install the plugin and get it working.
+
+e.g.
+
+1. Upload `my-default-post-content.php` to the `/wp-content/plugins/my-default-post-content` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Configure the default values through the settings page.
+
+
+== Frequently Asked Questions ==
+
+= Can I include HTML in my defaults? =
+
+Yes you can include any values in the defaults.
+
+== Screenshots ==
+
+1. This screenshot shows the setting field in use.
+2. The new post screen showing the saved values.
+
+== Changelog ==
+
+= 0.1 =
+* Birth of the plugin.
+
+== Upgrade Notice ==
+
+
