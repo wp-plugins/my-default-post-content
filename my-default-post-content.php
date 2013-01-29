@@ -1,47 +1,51 @@
 <?php
 /*
 Plugin Name: My Default Post Content
-Version: 0.1
+Version: 0.5
 Plugin URI: http://mrdenny.com/go/DefaultPostContent
 Description: Sets default title and content for new blog posts.
 Author: Denny Cherry
 Author URI: http://mrdenny.com/
 */
 
-function defaultpostcontent_activation() {
+class defaultpostcontent {
+
+function activation() {
 
     // Default options
-    $defaultpostcontent_options = array (
+    $options = array (
 	'title' => '',
 	'content' => '',
 	'donate' => ''
     );
+
+    add_option('defaultpostcontent_options', $options);
 }
 
 
 // Register settings, add sections and fields
-function defaultpostcontent_admin_init(){
-    register_setting( 'defaultpostcontent_options', 'defaultpostcontent_options', 'defaultpostcontent_validate' );
-    add_settings_section('defaultpostcontent_main', __( 'Settings', '' ), 'defaultpostcontent_section', 'defaultpostcontent');
-    add_settings_field('title', __( 'Default Post Title: ', '' ), 'defaultpostcontent_title', 'defaultpostcontent', 'defaultpostcontent_main');
-    add_settings_field('content', __( 'Default Post Content: ', ''), 'defaultpostcontent_content', 'defaultpostcontent', 'defaultpostcontent_main');
+function admin_init(){
+    register_setting( 'defaultpostcontent_options', 'defaultpostcontent_options', array($this, 'admin_validate'));
+    add_settings_section('defaultpostcontent_main', __( 'Settings', '' ), array($this, 'admin_section'), 'defaultpostcontent');
+    add_settings_field('title', __( 'Default Post Title: ', '' ), array($this, 'admin_title'), 'defaultpostcontent', 'defaultpostcontent_main');
+    add_settings_field('content', __( 'Default Post Content: ', ''), array($this, 'admin_content'), 'defaultpostcontent', 'defaultpostcontent_main');
 
 // This setting should always be last. Don't move it up.
-    add_settings_field('donate', __( '', ''), 'defaultpostcontent_donate', 'defaultpostcontent', 'defaultpostcontent_main');
+    add_settings_field('donate', __( '', ''), array($this, 'admin_donate'), 'defaultpostcontent', 'defaultpostcontent_main');
 }
 
-function defaultpostcontent_section() {
+function admin_section() {
     echo '<p>' . __( 'Please enter your default blog post settings.', '' ) . '</p>';
 }
 
-function defaultpostcontent_menu() {
+function admin_menu() {
      add_submenu_page('options-general.php', 'My Default Post Content Settings', 'My Default Post Content', 
-'manage_options', 'defaultpostcontent', 'defaultpostcontent_options_page');
+'manage_options', 'defaultpostcontent', array($this, 'options_page'));
 
 }
 
 // Display options page
-function defaultpostcontent_options_page() {
+function options_page() {
     ?>
     <div class="wrap">
     <h2><?php _e('Default Settings', TEXT_DOMAIN ); ?></h2>
@@ -58,17 +62,17 @@ function defaultpostcontent_options_page() {
 }
 
 
-function defaultpostcontent_title () {
+function admin_title () {
 	$options = get_option('defaultpostcontent_options');
 	echo "<input id='title' name='defaultpostcontent_options[title]' type='text' class='regular-text' value='{$options['title']}' />";
 }
 
-function defaultpostcontent_content () {
+function admin_content () {
 	$options = get_option('defaultpostcontent_options');
 	echo "<textarea id='content' name='defaultpostcontent_options[content]' rows='5' cols='60'/>{$options['content']}</textarea>";
 }
 
-function defaultpostcontent_donate() {
+function admin_donate() {
     $options = get_option('defaultpostcontent_options');
     if (empty($options['donate'])) {
         echo "<input id='donate' name='defaultpostcontent_options[donate]' type='checkbox' value='yes'/> I have <a href=\"http://mrdenny.com/go/DefaultPostContent\">donated</a> to the support of this plugin.";
@@ -78,19 +82,19 @@ function defaultpostcontent_donate() {
 
 }
 
-function defaultpostcontent_validate( $input) {
+function admin_validate( $input) {
 
 	return $input;
 }
 
-function return_defaultpostcontent_title($content) {
+function return_title($content) {
 	$options = get_option('defaultpostcontent_options');
 	$content = $options['title'];
 
 	return $content;
 }
 
-function return_defaultpostcontent_content ($content) {
+function return_content ($content) {
 	$options = get_option('defaultpostcontent_options');
 	$content = $options['content'];
 
@@ -99,7 +103,7 @@ function return_defaultpostcontent_content ($content) {
 
 // Add "Settings" link to the plugins page
 
-function defaultpostcontent_pluginmenu ($links, $file) {
+function pluginmenu ($links, $file) {
     if ( $file != plugin_basename( __FILE__ ))
         return $links;
 
@@ -111,7 +115,7 @@ function defaultpostcontent_pluginmenu ($links, $file) {
 	return $links;
 }
 
-function defaultpostcontent_action_links( $links, $file ) {
+function action_links( $links, $file ) {
     if ( $file != plugin_basename( __FILE__ ))
         return $links;
 
@@ -124,15 +128,18 @@ function defaultpostcontent_action_links( $links, $file ) {
 
 
 
+}
 
 
-register_activation_hook(__FILE__,'defaultpostcontent_activation');
+$MyClass = new defaultpostcontent();
+
+register_activation_hook(__FILE__, array($MyClass, 'admin_activation'));
 
 
-add_filter( 'default_title', 'return_defaultpostcontent_title' );
-add_filter( 'default_content', 'return_defaultpostcontent_content' );
-add_filter('plugin_action_links', 'defaultpostcontent_action_links',10,2);
-add_filter('plugin_row_meta', 'defaultpostcontent_pluginmenu',10,2);
+add_filter( 'default_title', array($MyClass, 'return_title') );
+add_filter( 'default_content', array($MyClass, 'return_content') );
+add_filter('plugin_action_links', array($MyClass, 'action_links'),10,2);
+add_filter('plugin_row_meta', array($MyClass, 'pluginmenu'),10,2);
 
-add_action('admin_init','defaultpostcontent_admin_init');
-add_action('admin_menu', 'defaultpostcontent_menu');
+add_action('admin_init',array($MyClass, 'admin_init'));
+add_action('admin_menu', array($MyClass, 'admin_menu'));
