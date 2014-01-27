@@ -3,7 +3,7 @@ Contributors: mrdenny
 Donate Link: http://mrdenny.com/go/DefaultPostContent
 Tags: email
 Requires at least: 3.0.1
-Tested up to: 3.5.1
+Tested up to: 3.8.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -39,6 +39,9 @@ Yes you can include any values in the defaults.
 2. The new post screen showing the saved values.
 
 == Changelog ==
+
+= 0.5.1 =
+* Fixed support/donate URLs.
 
 = 0.5 =
 * Moved the code into a class for easier code maintenance.

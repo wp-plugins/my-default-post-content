@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: My Default Post Content
-Version: 0.5
-Plugin URI: http://mrdenny.com/go/DefaultPostContent
+Version: 0.5.1
+Plugin URI: http://dcac.co/go/DefaultPostContent
 Description: Sets default title and content for new blog posts.
 Author: Denny Cherry
-Author URI: http://mrdenny.com/
+Author URI: http://dcac.co/
 */
 
 class defaultpostcontent {
@@ -75,7 +75,7 @@ function admin_content () {
 function admin_donate() {
     $options = get_option('defaultpostcontent_options');
     if (empty($options['donate'])) {
-        echo "<input id='donate' name='defaultpostcontent_options[donate]' type='checkbox' value='yes'/> I have <a href=\"http://mrdenny.com/go/DefaultPostContent\">donated</a> to the support of this plugin.";
+        echo "<input id='donate' name='defaultpostcontent_options[donate]' type='checkbox' value='yes'/> I have <a href=\"http://dcac.co/go/DefaultPostContent\">donated</a> to the support of this plugin.";
     } else {
         echo "<input id='donate' name='defaultpostcontent_options[donate]' type='hidden' value='yes'/>";
     }
@@ -109,7 +109,7 @@ function pluginmenu ($links, $file) {
 
 	$options = get_option('defaultpostcontent_options');
 	if (empty($options['donate'])) {
-		$links[] = '<a href="http://mrdenny.com/go/DefaultPostContent">' . __('Donate','') . '</a>';
+		$links[] = '<a href="http://dcac.co/go/DefaultPostContent">' . __('Donate','') . '</a>';
 	}
 
 	return $links;
