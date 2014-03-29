@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: My Default Post Content
-Version: 0.5.1
+Version: 0.5.2
 Plugin URI: http://dcac.co/go/DefaultPostContent
 Description: Sets default title and content for new blog posts.
 Author: Denny Cherry
@@ -46,6 +46,10 @@ function admin_menu() {
 
 // Display options page
 function options_page() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( __('You are not allowed to access this part of the site') );
+	}
+
     ?>
     <div class="wrap">
     <h2><?php _e('Default Settings', TEXT_DOMAIN ); ?></h2>

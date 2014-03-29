@@ -40,6 +40,9 @@ Yes you can include any values in the defaults.
 
 == Changelog ==
 
+= 0.5.2 =
+* Fixed bug where some users couldn't log into admin page.
+
 = 0.5.1 =
 * Fixed support/donate URLs.
 
