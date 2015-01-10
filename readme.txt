@@ -41,7 +41,7 @@ Yes you can include any values in the defaults.
 == Changelog ==
 
 = 0.5.3 =
-* Tested for version 4.0
+* Tested for version 4.1
 
 = 0.5.2 =
 * Fixed bug where some users couldn't log into admin page.
