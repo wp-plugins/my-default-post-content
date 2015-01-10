@@ -8,7 +8,8 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Emails other people when you publish a blog post.
+This plugin sets the title and body of new blog posts so that when the post contain the same content each time
+that same content doesn't need to be typed in each time. 
 
 == Description ==
 
