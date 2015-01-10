@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: My Default Post Content
-Version: 0.5.2
+Version: 0.5.3
 Plugin URI: http://dcac.co/go/DefaultPostContent
 Description: Sets default title and content for new blog posts.
 Author: Denny Cherry

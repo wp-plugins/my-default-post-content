@@ -3,7 +3,7 @@ Contributors: mrdenny
 Donate Link: http://mrdenny.com/go/DefaultPostContent
 Tags: email
 Requires at least: 3.0.1
-Tested up to: 3.9
+Tested up to: 4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -39,6 +39,9 @@ Yes you can include any values in the defaults.
 2. The new post screen showing the saved values.
 
 == Changelog ==
+
+= 0.5.3 =
+* Tested for version 4.0
 
 = 0.5.2 =
 * Fixed bug where some users couldn't log into admin page.
